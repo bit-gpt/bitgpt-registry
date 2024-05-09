@@ -4,11 +4,11 @@ This repository contains the open registry of BitGPT AI providers. The registry 
 
 ## How to add a new provider
 
-To add a new provider, please create a new file in the `providers` directory. The file MUST be named after the provider with the format `<domain>/<name>.json`. The file MUST contain the following fields:
+To add a new provider, please create a new file in the `providers` directory. The file MUST be named after the provider with the format `<name>@<domain>.json`. The file MUST contain the following fields:
 
 ```json
 {
-  "name": "provider.com/provider-name",
+  "name": "provider-name@provider.com",
   "description": "A short description of the provider",
   "url": "https://provider.com",
   "public_key": "0x00",

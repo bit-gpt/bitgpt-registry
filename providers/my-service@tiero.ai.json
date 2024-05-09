@@ -1,0 +1,16 @@
+{
+  "name": "my-service@tiero.ai",
+  "description": "A short description of the provider",
+  "url": "https://tiero.ai",
+  "public_key": "my-public-key",
+  "capabilities": [
+    {
+      "baseUrl": "https://my-inference.provider.com/v1/chat/completions",
+      "type": "openai-inference"
+    },
+    {
+      "baseUrl": "https://my-finetuning.provider.com/v1/finetune",
+      "type": "openai-finetuning"
+    }
+  ]
+}

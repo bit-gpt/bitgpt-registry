@@ -28,4 +28,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add registry.json
-          git diff --staged --exit-code || (git commit -m "Update registry.json" && git push)
+          git commit -m "Update manifests.json" -a || echo "No changes to commit"
+          git push

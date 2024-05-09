@@ -1,0 +1,47 @@
+name: Update Registry
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update_registry:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update registry.json
+        run: |
+          const fs = require('fs');
+          const path = require('path');
+
+          const registry = [];
+          const providersDir = path.join(__dirname, 'providers');
+
+          fs.readdirSync(providersDir).forEach(file => {
+            const filePath = path.join(providersDir, file);
+            const fileContent = fs.readFileSync(filePath, 'utf-8');
+            const jsonContent = JSON.parse(fileContent);
+
+            registry.push(jsonContent);
+          });
+
+          fs.writeFileSync('registry.json', JSON.stringify(registry, null, 2));
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add registry.json
+          git commit -m "Update registry.json" && git push

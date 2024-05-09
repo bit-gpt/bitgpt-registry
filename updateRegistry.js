@@ -18,7 +18,7 @@ for (const file of files) {
     console.error(`Error parsing ${file}:`, error);
     console.error('File content:', fileContent);
   }
-  console.log(`Validate ${file}`);
+  console.log(`Processed ${file}`);
 }
 
 fs.writeFileSync(path.join(__dirname, 'registry.json'), JSON.stringify(registry));
